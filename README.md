@@ -6,11 +6,11 @@ https://drive.google.com/drive/folders/1otoBE9k_qX8wY8uKDhhJox0m2BNE7LU9?usp=dri
 
 [Resampled ModelNet40 Dataset (.txt file)](https://www.kaggle.com/datasets/chenxaoyu/modelnet-normal-resampled/data)
 
-[Original ModelNet40 Dataset (.off file)] (https://www.kaggle.com/datasets/balraj98/modelnet40-princeton-3d-object-dataset/code)
+[Original ModelNet40 Dataset (.off file)](https://www.kaggle.com/datasets/balraj98/modelnet40-princeton-3d-object-dataset/code)
 
-[PointNet] (https://github.com/charlesq34/pointnet.git)
+[PointNet](https://github.com/charlesq34/pointnet.git)
 
-[PointNet2] (https://github.com/charlesq34/pointnet2.git)
+[PointNet2](https://github.com/charlesq34/pointnet2.git)
 
-[Pytorch Version] (https://github.com/yanx27/Pointnet_Pointnet2_pytorch.git)
+[Pytorch Version](https://github.com/yanx27/Pointnet_Pointnet2_pytorch.git)
 
