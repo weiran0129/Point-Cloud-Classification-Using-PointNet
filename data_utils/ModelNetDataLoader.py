@@ -11,6 +11,8 @@ import pickle
 from tqdm import tqdm
 from torch.utils.data import Dataset
 
+from sklearn.neighbors import NearestNeighbors
+
 warnings.filterwarnings('ignore')
 
 
@@ -45,6 +47,41 @@ def farthest_point_sample(point, npoint):
     point = point[centroids.astype(np.int32)]
     return point
 
+def compute_local_pca_features(xyz, k=16):
+    """
+    xyz: [N, 3]
+    Returns per-point features:
+        - curvature: [N, 1]
+        - eigenvalues: [N, 3] (λ1 >= λ2 >= λ3)
+        - density: [N, 1] (mean neighbor distance)
+    """
+    N = xyz.shape[0]
+    nbrs = NearestNeighbors(n_neighbors=k, algorithm='auto').fit(xyz)
+    distances, indices = nbrs.kneighbors(xyz)  # [N, k], [N, k]
+
+    curvature = np.zeros((N, 1), dtype=np.float32)
+    eigvals = np.zeros((N, 3), dtype=np.float32)
+    density = np.zeros((N, 1), dtype=np.float32)
+
+    eps = 1e-8
+    for i in range(N):
+        neigh = xyz[indices[i]]  # [k, 3]
+        mu = neigh.mean(axis=0, keepdims=True)
+        cov = (neigh - mu).T.dot(neigh - mu) / float(k)
+        w, _ = np.linalg.eigh(cov)  # returns in ascending order
+        w = np.sort(w)[::-1]        # descending: λ1 >= λ2 >= λ3
+        eigvals[i] = w.astype(np.float32)
+
+        s = w.sum() + eps
+        curvature[i, 0] = float(w[-1] / s)   # λ3 / (λ1+λ2+λ3)
+
+        density[i, 0] = distances[i].mean().astype(np.float32)
+
+    return curvature, eigvals, density
+
+
+
+
 
 class ModelNetDataLoader(Dataset):
     def __init__(self, root, args, split='train', process_data=False):
@@ -54,6 +91,10 @@ class ModelNetDataLoader(Dataset):
         self.uniform = args.use_uniform_sample
         self.use_normals = args.use_normals
         self.num_category = args.num_category
+
+        self.extra_features = set()
+        if hasattr(args, 'extra_features') and args.extra_features:
+            self.extra_features = set([s.strip() for s in args.extra_features.split(',') if s.strip()])
 
         if self.num_category == 10:
             self.catfile = os.path.join(self.root, 'modelnet10_shape_names.txt')
@@ -129,6 +170,39 @@ class ModelNetDataLoader(Dataset):
         point_set[:, 0:3] = pc_normalize(point_set[:, 0:3])
         if not self.use_normals:
             point_set = point_set[:, 0:3]
+
+        # point_set: [N, C], first 3 dims are xyz, optionally normals in [3:6]
+        xyz = point_set[:, 0:3]
+        N = xyz.shape[0]
+
+        extra_list = []
+
+        # 1) radius: ||xyz||
+        if 'radius' in self.extra_features:
+            r = np.linalg.norm(xyz, axis=1, keepdims=True).astype(np.float32)  # [N, 1]
+            extra_list.append(r)
+
+        # 2) height: z - min(z)
+        if 'height' in self.extra_features:
+            z = xyz[:, 2:3]
+            h = (z - z.min()).astype(np.float32)  # relative height
+            extra_list.append(h)
+
+        # 3) local PCA eigen + curvature + density
+        if any(f in self.extra_features for f in ['pca', 'curvature', 'density']):
+            curv, eigvals, dens = compute_local_pca_features(xyz, k=16)
+            # pca eigenvalues
+            if 'pca' in self.extra_features:
+                extra_list.append(eigvals)        # [N, 3]
+            if 'curvature' in self.extra_features:
+                extra_list.append(curv)           # [N, 1]
+            if 'density' in self.extra_features:
+                extra_list.append(dens)           # [N, 1]
+
+        if len(extra_list) > 0:
+            extras = np.concatenate(extra_list, axis=1)   # [N, F_extra]
+            point_set = np.concatenate([point_set, extras], axis=1)
+
 
         return point_set, label[0]
 
