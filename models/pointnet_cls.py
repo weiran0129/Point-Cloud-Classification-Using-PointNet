@@ -4,12 +4,13 @@ import torch.nn.functional as F
 from pointnet_utils import PointNetEncoder, feature_transform_reguliarzer
 
 class get_model(nn.Module):
-    def __init__(self, k=40, normal_channel=True):
+    def __init__(self, k=40, normal_channel=True,extra_channel=0):
         super(get_model, self).__init__()
         if normal_channel:
             channel = 6
         else:
             channel = 3
+        channel += extra_channel
         self.feat = PointNetEncoder(global_feat=True, feature_transform=True, channel=channel)
         self.fc1 = nn.Linear(1024, 512)
         self.fc2 = nn.Linear(512, 256)
