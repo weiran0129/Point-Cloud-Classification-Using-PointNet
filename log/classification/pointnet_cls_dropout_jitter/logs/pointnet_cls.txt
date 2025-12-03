@@ -1,0 +1,238 @@
+2025-12-03 01:07:53,821 - Model - INFO - PARAMETER ...
+2025-12-03 01:07:53,822 - Model - INFO - Namespace(use_cpu=False, gpu='0', batch_size=16, model='pointnet_cls', num_category=40, epoch=50, learning_rate=0.001, num_point=1024, optimizer='Adam', log_dir='pointnet_cls_dropout_jitter', decay_rate=0.0001, use_normals=False, process_data=True, use_uniform_sample=False, aug_ops='dropout,jitter')
+2025-12-03 01:07:53,822 - Model - INFO - Load dataset ...
+2025-12-03 01:07:55,134 - Model - INFO - No existing model, starting training from scratch...
+2025-12-03 01:07:56,608 - Model - INFO - Start training...
+2025-12-03 01:07:56,608 - Model - INFO - Epoch 1 (1/50):
+2025-12-03 01:08:15,838 - Model - INFO - Train Instance Accuracy: 0.391260
+2025-12-03 01:08:18,029 - Model - INFO - Test Instance Accuracy: 0.464516, Class Accuracy: 0.335309
+2025-12-03 01:08:18,029 - Model - INFO - Best Instance Accuracy: 0.464516, Class Accuracy: 0.335309
+2025-12-03 01:08:18,029 - Model - INFO - Save model...
+2025-12-03 01:08:18,029 - Model - INFO - Saving at log/classification/pointnet_cls_dropout_jitter/checkpoints/best_model.pth
+2025-12-03 01:08:18,177 - Model - INFO - Epoch 2 (2/50):
+2025-12-03 01:08:37,248 - Model - INFO - Train Instance Accuracy: 0.551524
+2025-12-03 01:08:39,389 - Model - INFO - Test Instance Accuracy: 0.579032, Class Accuracy: 0.449650
+2025-12-03 01:08:39,390 - Model - INFO - Best Instance Accuracy: 0.579032, Class Accuracy: 0.449650
+2025-12-03 01:08:39,390 - Model - INFO - Save model...
+2025-12-03 01:08:39,390 - Model - INFO - Saving at log/classification/pointnet_cls_dropout_jitter/checkpoints/best_model.pth
+2025-12-03 01:08:39,536 - Model - INFO - Epoch 3 (3/50):
+2025-12-03 01:08:59,189 - Model - INFO - Train Instance Accuracy: 0.631504
+2025-12-03 01:09:01,356 - Model - INFO - Test Instance Accuracy: 0.625000, Class Accuracy: 0.541826
+2025-12-03 01:09:01,357 - Model - INFO - Best Instance Accuracy: 0.625000, Class Accuracy: 0.541826
+2025-12-03 01:09:01,357 - Model - INFO - Save model...
+2025-12-03 01:09:01,358 - Model - INFO - Saving at log/classification/pointnet_cls_dropout_jitter/checkpoints/best_model.pth
+2025-12-03 01:09:01,540 - Model - INFO - Epoch 4 (4/50):
+2025-12-03 01:09:21,167 - Model - INFO - Train Instance Accuracy: 0.672053
+2025-12-03 01:09:23,332 - Model - INFO - Test Instance Accuracy: 0.657661, Class Accuracy: 0.567856
+2025-12-03 01:09:23,332 - Model - INFO - Best Instance Accuracy: 0.657661, Class Accuracy: 0.567856
+2025-12-03 01:09:23,333 - Model - INFO - Save model...
+2025-12-03 01:09:23,333 - Model - INFO - Saving at log/classification/pointnet_cls_dropout_jitter/checkpoints/best_model.pth
+2025-12-03 01:09:23,479 - Model - INFO - Epoch 5 (5/50):
+2025-12-03 01:09:43,498 - Model - INFO - Train Instance Accuracy: 0.707012
+2025-12-03 01:09:45,870 - Model - INFO - Test Instance Accuracy: 0.749194, Class Accuracy: 0.636625
+2025-12-03 01:09:45,871 - Model - INFO - Best Instance Accuracy: 0.749194, Class Accuracy: 0.636625
+2025-12-03 01:09:45,871 - Model - INFO - Save model...
+2025-12-03 01:09:45,871 - Model - INFO - Saving at log/classification/pointnet_cls_dropout_jitter/checkpoints/best_model.pth
+2025-12-03 01:09:46,037 - Model - INFO - Epoch 6 (6/50):
+2025-12-03 01:10:06,195 - Model - INFO - Train Instance Accuracy: 0.729980
+2025-12-03 01:10:08,347 - Model - INFO - Test Instance Accuracy: 0.697581, Class Accuracy: 0.595017
+2025-12-03 01:10:08,347 - Model - INFO - Best Instance Accuracy: 0.749194, Class Accuracy: 0.636625
+2025-12-03 01:10:08,347 - Model - INFO - Epoch 7 (7/50):
+2025-12-03 01:10:27,801 - Model - INFO - Train Instance Accuracy: 0.741565
+2025-12-03 01:10:29,984 - Model - INFO - Test Instance Accuracy: 0.792339, Class Accuracy: 0.691008
+2025-12-03 01:10:29,984 - Model - INFO - Best Instance Accuracy: 0.792339, Class Accuracy: 0.691008
+2025-12-03 01:10:29,984 - Model - INFO - Save model...
+2025-12-03 01:10:29,984 - Model - INFO - Saving at log/classification/pointnet_cls_dropout_jitter/checkpoints/best_model.pth
+2025-12-03 01:10:30,122 - Model - INFO - Epoch 8 (8/50):
+2025-12-03 01:10:49,727 - Model - INFO - Train Instance Accuracy: 0.761687
+2025-12-03 01:10:52,160 - Model - INFO - Test Instance Accuracy: 0.793952, Class Accuracy: 0.724598
+2025-12-03 01:10:52,160 - Model - INFO - Best Instance Accuracy: 0.793952, Class Accuracy: 0.724598
+2025-12-03 01:10:52,160 - Model - INFO - Save model...
+2025-12-03 01:10:52,161 - Model - INFO - Saving at log/classification/pointnet_cls_dropout_jitter/checkpoints/best_model.pth
+2025-12-03 01:10:52,314 - Model - INFO - Epoch 9 (9/50):
+2025-12-03 01:11:12,410 - Model - INFO - Train Instance Accuracy: 0.756199
+2025-12-03 01:11:14,598 - Model - INFO - Test Instance Accuracy: 0.782661, Class Accuracy: 0.730403
+2025-12-03 01:11:14,599 - Model - INFO - Best Instance Accuracy: 0.793952, Class Accuracy: 0.730403
+2025-12-03 01:11:14,599 - Model - INFO - Epoch 10 (10/50):
+2025-12-03 01:11:34,267 - Model - INFO - Train Instance Accuracy: 0.774797
+2025-12-03 01:11:36,473 - Model - INFO - Test Instance Accuracy: 0.750000, Class Accuracy: 0.669506
+2025-12-03 01:11:36,473 - Model - INFO - Best Instance Accuracy: 0.793952, Class Accuracy: 0.730403
+2025-12-03 01:11:36,473 - Model - INFO - Epoch 11 (11/50):
+2025-12-03 01:11:56,065 - Model - INFO - Train Instance Accuracy: 0.778862
+2025-12-03 01:11:58,598 - Model - INFO - Test Instance Accuracy: 0.815726, Class Accuracy: 0.745738
+2025-12-03 01:11:58,599 - Model - INFO - Best Instance Accuracy: 0.815726, Class Accuracy: 0.745738
+2025-12-03 01:11:58,599 - Model - INFO - Save model...
+2025-12-03 01:11:58,599 - Model - INFO - Saving at log/classification/pointnet_cls_dropout_jitter/checkpoints/best_model.pth
+2025-12-03 01:11:58,744 - Model - INFO - Epoch 12 (12/50):
+2025-12-03 01:12:18,365 - Model - INFO - Train Instance Accuracy: 0.783333
+2025-12-03 01:12:20,523 - Model - INFO - Test Instance Accuracy: 0.786290, Class Accuracy: 0.719892
+2025-12-03 01:12:20,523 - Model - INFO - Best Instance Accuracy: 0.815726, Class Accuracy: 0.745738
+2025-12-03 01:12:20,523 - Model - INFO - Epoch 13 (13/50):
+2025-12-03 01:12:40,119 - Model - INFO - Train Instance Accuracy: 0.784959
+2025-12-03 01:12:42,287 - Model - INFO - Test Instance Accuracy: 0.827823, Class Accuracy: 0.746927
+2025-12-03 01:12:42,287 - Model - INFO - Best Instance Accuracy: 0.827823, Class Accuracy: 0.746927
+2025-12-03 01:12:42,288 - Model - INFO - Save model...
+2025-12-03 01:12:42,288 - Model - INFO - Saving at log/classification/pointnet_cls_dropout_jitter/checkpoints/best_model.pth
+2025-12-03 01:12:42,445 - Model - INFO - Epoch 14 (14/50):
+2025-12-03 01:13:02,888 - Model - INFO - Train Instance Accuracy: 0.792378
+2025-12-03 01:13:05,417 - Model - INFO - Test Instance Accuracy: 0.839919, Class Accuracy: 0.755275
+2025-12-03 01:13:05,417 - Model - INFO - Best Instance Accuracy: 0.839919, Class Accuracy: 0.755275
+2025-12-03 01:13:05,418 - Model - INFO - Save model...
+2025-12-03 01:13:05,418 - Model - INFO - Saving at log/classification/pointnet_cls_dropout_jitter/checkpoints/best_model.pth
+2025-12-03 01:13:05,569 - Model - INFO - Epoch 15 (15/50):
+2025-12-03 01:13:25,803 - Model - INFO - Train Instance Accuracy: 0.801118
+2025-12-03 01:13:27,947 - Model - INFO - Test Instance Accuracy: 0.809274, Class Accuracy: 0.740097
+2025-12-03 01:13:27,947 - Model - INFO - Best Instance Accuracy: 0.839919, Class Accuracy: 0.755275
+2025-12-03 01:13:27,948 - Model - INFO - Epoch 16 (16/50):
+2025-12-03 01:13:47,469 - Model - INFO - Train Instance Accuracy: 0.804675
+2025-12-03 01:13:49,620 - Model - INFO - Test Instance Accuracy: 0.826613, Class Accuracy: 0.760735
+2025-12-03 01:13:49,621 - Model - INFO - Best Instance Accuracy: 0.839919, Class Accuracy: 0.760735
+2025-12-03 01:13:49,621 - Model - INFO - Epoch 17 (17/50):
+2025-12-03 01:14:09,126 - Model - INFO - Train Instance Accuracy: 0.813110
+2025-12-03 01:14:11,675 - Model - INFO - Test Instance Accuracy: 0.802823, Class Accuracy: 0.745905
+2025-12-03 01:14:11,675 - Model - INFO - Best Instance Accuracy: 0.839919, Class Accuracy: 0.760735
+2025-12-03 01:14:11,675 - Model - INFO - Epoch 18 (18/50):
+2025-12-03 01:14:31,086 - Model - INFO - Train Instance Accuracy: 0.809451
+2025-12-03 01:14:33,252 - Model - INFO - Test Instance Accuracy: 0.825403, Class Accuracy: 0.769216
+2025-12-03 01:14:33,252 - Model - INFO - Best Instance Accuracy: 0.839919, Class Accuracy: 0.769216
+2025-12-03 01:14:33,252 - Model - INFO - Epoch 19 (19/50):
+2025-12-03 01:14:52,754 - Model - INFO - Train Instance Accuracy: 0.810264
+2025-12-03 01:14:54,914 - Model - INFO - Test Instance Accuracy: 0.820161, Class Accuracy: 0.757963
+2025-12-03 01:14:54,915 - Model - INFO - Best Instance Accuracy: 0.839919, Class Accuracy: 0.769216
+2025-12-03 01:14:54,915 - Model - INFO - Epoch 20 (20/50):
+2025-12-03 01:15:14,391 - Model - INFO - Train Instance Accuracy: 0.829472
+2025-12-03 01:15:16,913 - Model - INFO - Test Instance Accuracy: 0.850000, Class Accuracy: 0.789963
+2025-12-03 01:15:16,913 - Model - INFO - Best Instance Accuracy: 0.850000, Class Accuracy: 0.789963
+2025-12-03 01:15:16,914 - Model - INFO - Save model...
+2025-12-03 01:15:16,914 - Model - INFO - Saving at log/classification/pointnet_cls_dropout_jitter/checkpoints/best_model.pth
+2025-12-03 01:15:17,107 - Model - INFO - Epoch 21 (21/50):
+2025-12-03 01:15:36,697 - Model - INFO - Train Instance Accuracy: 0.831301
+2025-12-03 01:15:38,873 - Model - INFO - Test Instance Accuracy: 0.830645, Class Accuracy: 0.745703
+2025-12-03 01:15:38,874 - Model - INFO - Best Instance Accuracy: 0.850000, Class Accuracy: 0.789963
+2025-12-03 01:15:38,874 - Model - INFO - Epoch 22 (22/50):
+2025-12-03 01:15:58,372 - Model - INFO - Train Instance Accuracy: 0.841667
+2025-12-03 01:16:00,529 - Model - INFO - Test Instance Accuracy: 0.833871, Class Accuracy: 0.782890
+2025-12-03 01:16:00,529 - Model - INFO - Best Instance Accuracy: 0.850000, Class Accuracy: 0.789963
+2025-12-03 01:16:00,530 - Model - INFO - Epoch 23 (23/50):
+2025-12-03 01:16:19,925 - Model - INFO - Train Instance Accuracy: 0.836179
+2025-12-03 01:16:22,343 - Model - INFO - Test Instance Accuracy: 0.867742, Class Accuracy: 0.810790
+2025-12-03 01:16:22,343 - Model - INFO - Best Instance Accuracy: 0.867742, Class Accuracy: 0.810790
+2025-12-03 01:16:22,343 - Model - INFO - Save model...
+2025-12-03 01:16:22,343 - Model - INFO - Saving at log/classification/pointnet_cls_dropout_jitter/checkpoints/best_model.pth
+2025-12-03 01:16:22,502 - Model - INFO - Epoch 24 (24/50):
+2025-12-03 01:16:42,144 - Model - INFO - Train Instance Accuracy: 0.841057
+2025-12-03 01:16:44,295 - Model - INFO - Test Instance Accuracy: 0.847581, Class Accuracy: 0.793466
+2025-12-03 01:16:44,295 - Model - INFO - Best Instance Accuracy: 0.867742, Class Accuracy: 0.810790
+2025-12-03 01:16:44,296 - Model - INFO - Epoch 25 (25/50):
+2025-12-03 01:17:03,721 - Model - INFO - Train Instance Accuracy: 0.844715
+2025-12-03 01:17:05,863 - Model - INFO - Test Instance Accuracy: 0.851210, Class Accuracy: 0.790226
+2025-12-03 01:17:05,864 - Model - INFO - Best Instance Accuracy: 0.867742, Class Accuracy: 0.810790
+2025-12-03 01:17:05,864 - Model - INFO - Epoch 26 (26/50):
+2025-12-03 01:17:25,207 - Model - INFO - Train Instance Accuracy: 0.843902
+2025-12-03 01:17:27,564 - Model - INFO - Test Instance Accuracy: 0.848387, Class Accuracy: 0.792400
+2025-12-03 01:17:27,564 - Model - INFO - Best Instance Accuracy: 0.867742, Class Accuracy: 0.810790
+2025-12-03 01:17:27,564 - Model - INFO - Epoch 27 (27/50):
+2025-12-03 01:17:47,027 - Model - INFO - Train Instance Accuracy: 0.850407
+2025-12-03 01:17:49,186 - Model - INFO - Test Instance Accuracy: 0.853629, Class Accuracy: 0.794138
+2025-12-03 01:17:49,187 - Model - INFO - Best Instance Accuracy: 0.867742, Class Accuracy: 0.810790
+2025-12-03 01:17:49,187 - Model - INFO - Epoch 28 (28/50):
+2025-12-03 01:18:08,572 - Model - INFO - Train Instance Accuracy: 0.849797
+2025-12-03 01:18:10,782 - Model - INFO - Test Instance Accuracy: 0.856048, Class Accuracy: 0.801540
+2025-12-03 01:18:10,782 - Model - INFO - Best Instance Accuracy: 0.867742, Class Accuracy: 0.810790
+2025-12-03 01:18:10,783 - Model - INFO - Epoch 29 (29/50):
+2025-12-03 01:18:30,011 - Model - INFO - Train Instance Accuracy: 0.848476
+2025-12-03 01:18:32,222 - Model - INFO - Test Instance Accuracy: 0.860887, Class Accuracy: 0.810663
+2025-12-03 01:18:32,223 - Model - INFO - Best Instance Accuracy: 0.867742, Class Accuracy: 0.810790
+2025-12-03 01:18:32,223 - Model - INFO - Epoch 30 (30/50):
+2025-12-03 01:18:51,600 - Model - INFO - Train Instance Accuracy: 0.860061
+2025-12-03 01:18:53,740 - Model - INFO - Test Instance Accuracy: 0.852419, Class Accuracy: 0.798762
+2025-12-03 01:18:53,740 - Model - INFO - Best Instance Accuracy: 0.867742, Class Accuracy: 0.810790
+2025-12-03 01:18:53,740 - Model - INFO - Epoch 31 (31/50):
+2025-12-03 01:19:13,041 - Model - INFO - Train Instance Accuracy: 0.857419
+2025-12-03 01:19:15,427 - Model - INFO - Test Instance Accuracy: 0.856048, Class Accuracy: 0.801181
+2025-12-03 01:19:15,427 - Model - INFO - Best Instance Accuracy: 0.867742, Class Accuracy: 0.810790
+2025-12-03 01:19:15,427 - Model - INFO - Epoch 32 (32/50):
+2025-12-03 01:19:34,622 - Model - INFO - Train Instance Accuracy: 0.854675
+2025-12-03 01:19:36,784 - Model - INFO - Test Instance Accuracy: 0.864516, Class Accuracy: 0.802959
+2025-12-03 01:19:36,785 - Model - INFO - Best Instance Accuracy: 0.867742, Class Accuracy: 0.810790
+2025-12-03 01:19:36,785 - Model - INFO - Epoch 33 (33/50):
+2025-12-03 01:19:56,108 - Model - INFO - Train Instance Accuracy: 0.855386
+2025-12-03 01:19:58,261 - Model - INFO - Test Instance Accuracy: 0.842742, Class Accuracy: 0.788189
+2025-12-03 01:19:58,261 - Model - INFO - Best Instance Accuracy: 0.867742, Class Accuracy: 0.810790
+2025-12-03 01:19:58,261 - Model - INFO - Epoch 34 (34/50):
+2025-12-03 01:20:17,534 - Model - INFO - Train Instance Accuracy: 0.857520
+2025-12-03 01:20:20,093 - Model - INFO - Test Instance Accuracy: 0.870565, Class Accuracy: 0.804661
+2025-12-03 01:20:20,093 - Model - INFO - Best Instance Accuracy: 0.870565, Class Accuracy: 0.810790
+2025-12-03 01:20:20,093 - Model - INFO - Save model...
+2025-12-03 01:20:20,093 - Model - INFO - Saving at log/classification/pointnet_cls_dropout_jitter/checkpoints/best_model.pth
+2025-12-03 01:20:20,240 - Model - INFO - Epoch 35 (35/50):
+2025-12-03 01:20:40,277 - Model - INFO - Train Instance Accuracy: 0.857825
+2025-12-03 01:20:42,433 - Model - INFO - Test Instance Accuracy: 0.871774, Class Accuracy: 0.816793
+2025-12-03 01:20:42,434 - Model - INFO - Best Instance Accuracy: 0.871774, Class Accuracy: 0.816793
+2025-12-03 01:20:42,434 - Model - INFO - Save model...
+2025-12-03 01:20:42,434 - Model - INFO - Saving at log/classification/pointnet_cls_dropout_jitter/checkpoints/best_model.pth
+2025-12-03 01:20:42,579 - Model - INFO - Epoch 36 (36/50):
+2025-12-03 01:21:02,027 - Model - INFO - Train Instance Accuracy: 0.861890
+2025-12-03 01:21:04,160 - Model - INFO - Test Instance Accuracy: 0.863306, Class Accuracy: 0.823288
+2025-12-03 01:21:04,161 - Model - INFO - Best Instance Accuracy: 0.871774, Class Accuracy: 0.823288
+2025-12-03 01:21:04,161 - Model - INFO - Epoch 37 (37/50):
+2025-12-03 01:21:23,371 - Model - INFO - Train Instance Accuracy: 0.857114
+2025-12-03 01:21:25,792 - Model - INFO - Test Instance Accuracy: 0.885081, Class Accuracy: 0.841501
+2025-12-03 01:21:25,793 - Model - INFO - Best Instance Accuracy: 0.885081, Class Accuracy: 0.841501
+2025-12-03 01:21:25,793 - Model - INFO - Save model...
+2025-12-03 01:21:25,793 - Model - INFO - Saving at log/classification/pointnet_cls_dropout_jitter/checkpoints/best_model.pth
+2025-12-03 01:21:25,953 - Model - INFO - Epoch 38 (38/50):
+2025-12-03 01:21:45,441 - Model - INFO - Train Instance Accuracy: 0.864939
+2025-12-03 01:21:47,587 - Model - INFO - Test Instance Accuracy: 0.884677, Class Accuracy: 0.836767
+2025-12-03 01:21:47,587 - Model - INFO - Best Instance Accuracy: 0.885081, Class Accuracy: 0.841501
+2025-12-03 01:21:47,588 - Model - INFO - Epoch 39 (39/50):
+2025-12-03 01:22:06,804 - Model - INFO - Train Instance Accuracy: 0.864634
+2025-12-03 01:22:09,062 - Model - INFO - Test Instance Accuracy: 0.867339, Class Accuracy: 0.828421
+2025-12-03 01:22:09,063 - Model - INFO - Best Instance Accuracy: 0.885081, Class Accuracy: 0.841501
+2025-12-03 01:22:09,063 - Model - INFO - Epoch 40 (40/50):
+2025-12-03 01:22:28,131 - Model - INFO - Train Instance Accuracy: 0.877541
+2025-12-03 01:22:30,290 - Model - INFO - Test Instance Accuracy: 0.879839, Class Accuracy: 0.833498
+2025-12-03 01:22:30,291 - Model - INFO - Best Instance Accuracy: 0.885081, Class Accuracy: 0.841501
+2025-12-03 01:22:30,291 - Model - INFO - Epoch 41 (41/50):
+2025-12-03 01:22:49,529 - Model - INFO - Train Instance Accuracy: 0.878760
+2025-12-03 01:22:51,652 - Model - INFO - Test Instance Accuracy: 0.879032, Class Accuracy: 0.819021
+2025-12-03 01:22:51,652 - Model - INFO - Best Instance Accuracy: 0.885081, Class Accuracy: 0.841501
+2025-12-03 01:22:51,652 - Model - INFO - Epoch 42 (42/50):
+2025-12-03 01:23:10,710 - Model - INFO - Train Instance Accuracy: 0.880793
+2025-12-03 01:23:13,252 - Model - INFO - Test Instance Accuracy: 0.877419, Class Accuracy: 0.815403
+2025-12-03 01:23:13,252 - Model - INFO - Best Instance Accuracy: 0.885081, Class Accuracy: 0.841501
+2025-12-03 01:23:13,252 - Model - INFO - Epoch 43 (43/50):
+2025-12-03 01:23:32,479 - Model - INFO - Train Instance Accuracy: 0.880894
+2025-12-03 01:23:34,664 - Model - INFO - Test Instance Accuracy: 0.878226, Class Accuracy: 0.826678
+2025-12-03 01:23:34,665 - Model - INFO - Best Instance Accuracy: 0.885081, Class Accuracy: 0.841501
+2025-12-03 01:23:34,665 - Model - INFO - Epoch 44 (44/50):
+2025-12-03 01:23:53,907 - Model - INFO - Train Instance Accuracy: 0.882825
+2025-12-03 01:23:56,068 - Model - INFO - Test Instance Accuracy: 0.890726, Class Accuracy: 0.836715
+2025-12-03 01:23:56,068 - Model - INFO - Best Instance Accuracy: 0.890726, Class Accuracy: 0.841501
+2025-12-03 01:23:56,069 - Model - INFO - Save model...
+2025-12-03 01:23:56,069 - Model - INFO - Saving at log/classification/pointnet_cls_dropout_jitter/checkpoints/best_model.pth
+2025-12-03 01:23:56,219 - Model - INFO - Epoch 45 (45/50):
+2025-12-03 01:24:15,628 - Model - INFO - Train Instance Accuracy: 0.883333
+2025-12-03 01:24:18,006 - Model - INFO - Test Instance Accuracy: 0.886694, Class Accuracy: 0.836132
+2025-12-03 01:24:18,007 - Model - INFO - Best Instance Accuracy: 0.890726, Class Accuracy: 0.841501
+2025-12-03 01:24:18,007 - Model - INFO - Epoch 46 (46/50):
+2025-12-03 01:24:37,376 - Model - INFO - Train Instance Accuracy: 0.882825
+2025-12-03 01:24:39,534 - Model - INFO - Test Instance Accuracy: 0.872177, Class Accuracy: 0.813722
+2025-12-03 01:24:39,534 - Model - INFO - Best Instance Accuracy: 0.890726, Class Accuracy: 0.841501
+2025-12-03 01:24:39,534 - Model - INFO - Epoch 47 (47/50):
+2025-12-03 01:24:58,837 - Model - INFO - Train Instance Accuracy: 0.886179
+2025-12-03 01:25:01,181 - Model - INFO - Test Instance Accuracy: 0.880645, Class Accuracy: 0.828768
+2025-12-03 01:25:01,181 - Model - INFO - Best Instance Accuracy: 0.890726, Class Accuracy: 0.841501
+2025-12-03 01:25:01,181 - Model - INFO - Epoch 48 (48/50):
+2025-12-03 01:25:20,340 - Model - INFO - Train Instance Accuracy: 0.884045
+2025-12-03 01:25:22,502 - Model - INFO - Test Instance Accuracy: 0.859677, Class Accuracy: 0.801752
+2025-12-03 01:25:22,503 - Model - INFO - Best Instance Accuracy: 0.890726, Class Accuracy: 0.841501
+2025-12-03 01:25:22,503 - Model - INFO - Epoch 49 (49/50):
+2025-12-03 01:25:41,656 - Model - INFO - Train Instance Accuracy: 0.883028
+2025-12-03 01:25:43,785 - Model - INFO - Test Instance Accuracy: 0.868145, Class Accuracy: 0.822185
+2025-12-03 01:25:43,785 - Model - INFO - Best Instance Accuracy: 0.890726, Class Accuracy: 0.841501
+2025-12-03 01:25:43,786 - Model - INFO - Epoch 50 (50/50):
+2025-12-03 01:26:02,899 - Model - INFO - Train Instance Accuracy: 0.883740
+2025-12-03 01:26:05,446 - Model - INFO - Test Instance Accuracy: 0.868145, Class Accuracy: 0.818580
+2025-12-03 01:26:05,446 - Model - INFO - Best Instance Accuracy: 0.890726, Class Accuracy: 0.841501
+2025-12-03 01:26:05,446 - Model - INFO - End of training...
