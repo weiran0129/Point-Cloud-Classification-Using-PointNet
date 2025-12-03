@@ -40,6 +40,14 @@ def parse_args():
     parser.add_argument('--use_normals', action='store_true', default=False, help='use normals')
     parser.add_argument('--process_data', action='store_true', default=False, help='save data offline')
     parser.add_argument('--use_uniform_sample', action='store_true', default=False, help='use uniform sampiling')
+    parser.add_argument('--aug_ops', type=str,
+                    default='dropout,scale,shift',
+                    help='Comma-separated list of data augmentations: '
+                         'dropout,scale,shift,rot_z,rot_3d,jitter,flip')
+    parser.add_argument('--extra_features', type=str,
+                    default='',
+                    help='Comma-separated list of extra per-point features: '
+                         'radius,height,pca,curvature,density')
     return parser.parse_args()
 
 
@@ -120,9 +128,27 @@ def main(args):
 
     train_dataset = ModelNetDataLoader(root=data_path, args=args, split='train', process_data=args.process_data)
     test_dataset = ModelNetDataLoader(root=data_path, args=args, split='test', process_data=args.process_data)
-    trainDataLoader = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=10, drop_last=True)
-    testDataLoader = torch.utils.data.DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers=10)
+    trainDataLoader = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=4, drop_last=True)
+    testDataLoader = torch.utils.data.DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers=4)
+    '''Extra Feature'''
+    def count_extra_channel(args):
+        if not hasattr(args, 'extra_features') or not args.extra_features:
+            return 0
+        feats = set([s.strip() for s in args.extra_features.split(',') if s.strip()])
+        dim = 0
+        if 'radius' in feats:
+            dim += 1
+        if 'height' in feats:
+            dim += 1
+        if 'pca' in feats:
+            dim += 3
+        if 'curvature' in feats:
+            dim += 1
+        if 'density' in feats:
+            dim += 1
+        return dim
 
+    extra_channel = count_extra_channel(args)
     '''MODEL LOADING'''
     num_class = args.num_category
     model = importlib.import_module(args.model)
@@ -130,7 +156,7 @@ def main(args):
     shutil.copy('models/pointnet2_utils.py', str(exp_dir))
     shutil.copy('./train_classification.py', str(exp_dir))
 
-    classifier = model.get_model(num_class, normal_channel=args.use_normals)
+    classifier = model.get_model(num_class, normal_channel=args.use_normals, extra_channel=extra_channel)
     criterion = model.get_loss()
     classifier.apply(inplace_relu)
 
@@ -139,7 +165,7 @@ def main(args):
         criterion = criterion.cuda()
 
     try:
-        checkpoint = torch.load(str(exp_dir) + '/checkpoints/best_model.pth')  ### We change our best model path here
+        checkpoint = torch.load(str(exp_dir) + '/checkpoints/best_model.pth', weights_only=False)
         start_epoch = checkpoint['epoch']
         classifier.load_state_dict(checkpoint['model_state_dict'])
         log_string('Use pretrain model')
@@ -174,11 +200,41 @@ def main(args):
         scheduler.step()
         for batch_id, (points, target) in tqdm(enumerate(trainDataLoader, 0), total=len(trainDataLoader), smoothing=0.9):
             optimizer.zero_grad()
-
+            aug_ops = set(args.aug_ops.split(',')) if hasattr(args, 'aug_ops') else set()
             points = points.data.numpy()
-            points = provider.random_point_dropout(points)
-            points[:, :, 0:3] = provider.random_scale_point_cloud(points[:, :, 0:3])
-            points[:, :, 0:3] = provider.shift_point_cloud(points[:, :, 0:3])
+            # points = provider.random_point_dropout(points)
+            # points[:, :, 0:3] = provider.random_scale_point_cloud(points[:, :, 0:3])
+            # points[:, :, 0:3] = provider.shift_point_cloud(points[:, :, 0:3])
+
+            # 1) rotations
+            if 'rot_z' in aug_ops:
+                points[:, :, 0:3] = provider.rotate_point_cloud_z(points[:, :, 0:3])
+            if 'rot_3d' in aug_ops:
+                points[:, :, 0:3] = provider.rotate_point_cloud_3d(points[:, :, 0:3])
+
+            # 2) jitter / noise
+            if 'jitter' in aug_ops:
+                points[:, :, 0:3] = provider.jitter_point_cloud(points[:, :, 0:3])
+
+            # 3) flips (mirror)
+            if 'flip' in aug_ops:
+                points[:, :, 0:3] = provider.random_flip_point_cloud(points[:, :, 0:3])
+
+            # 4) dropout (point dropping)
+            if 'dropout' in aug_ops:
+                points = provider.random_point_dropout(points)
+
+            # 5) global scale & shift
+            if 'scale' in aug_ops:
+                points[:, :, 0:3] = provider.random_scale_point_cloud(points[:, :, 0:3])
+            if 'shift' in aug_ops:
+                points[:, :, 0:3] = provider.shift_point_cloud(points[:, :, 0:3])
+
+            # # 6) cutout / occlusion
+            # if 'cutout' in aug_ops:
+            #     points[:, :, 0:3] = provider.random_cutout_point_cloud(points[:, :, 0:3])
+
+
             points = torch.Tensor(points)
             points = points.transpose(2, 1)
 
