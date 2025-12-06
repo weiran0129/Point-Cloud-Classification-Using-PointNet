@@ -1,0 +1,38 @@
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "" --log_dir pointnet++
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "dropout,scale,shift" --log_dir pointnet++_dropout_scale_shift
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "dropout" --log_dir pointnet++_dropout
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "scale" --log_dir pointnet++_scale
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "shift" --log_dir pointnet++_shift
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "jitter" --log_dir pointnet++_jitter
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "jitter_sigma_clip" --log_dir pointnet++_jitter(sigma+clip)
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "rot_rand" --log_dir pointnet++_rot
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "flip" --log_dir pointnet++_flip
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "dropout,scale,shift,jitter_sigma_clip" --log_dir pointnet++_dropout_scale_shift_jitter(sigma+clip)
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "dropout,scale,shift,jitter_sigma_clip" -- user_normals --log_dir pointnet++_dropout_scale_shift_jitter(sigma+clip)_normals
+python train_classification.py     --model pointnet2_cls_ssg     --aug_ops ""      --extra_features "radius"     --log_dir pointnet++__radius
+python train_classification.py     --model pointnet2_cls_ssg     --aug_ops ""      --extra_features "height, radius"     --log_dir pointnet++__height_radius
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "dropout,jitter" --log_dir pointnet++_dropout_jitter
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "dropout,scale,shift,rot_rand, jitter,flip" --log_dir pointnet++_dropout_scale_shift_rot_rand_jitter_flip
+python train_classification.py     --model pointnet2_cls_ssg     --aug_ops ""      --extra_features "height"     --log_dir pointnet++__height
+python train_classification.py     --model pointnet2_cls_ssg     --aug_ops ""      --extra_features "radius"     --log_dir pointnet++__radius
+python train_classification.py     --model pointnet2_cls_ssg     --aug_ops ""      --extra_features "height, radius"     --log_dir pointnet++__height_radius
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "dropout,jitter_sigma_clip" --extra_features "height, radius" --use_normals  --log_dir pointnet++_test
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "" --extra_features "pca" --log_dir pointnet++_pca
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "" --extra_features "curvature" --log_dir pointnet++_curvature
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "" --extra_features "density" --log_dir pointnet++_density
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "jitter_sigma_clip" --use_normals --log_dir pointnet++_jitter_normals
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "jitter_sigma_clip,dropout" --extra_features "height" --log_dir pointnet++_dropout_jitter_height
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "jitter_sigma_clip,dropout" --extra_features "height" --use_normals --log_dir pointnet++_dropout_jitter_height_normals
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "jitter_sigma_clip,dropout" --extra_features "radius" --log_dir pointnet++_dropout_jitter_radius
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "jitter_sigma_clip,dropout" --extra_features "height,radius" --use_normals --log_dir pointnet++_dropout_jitter_height_radius_normals
+python train_classification.py     --model pointnet2_cls_ssg     --aug_ops ""      --extra_features "curvature"     --log_dir pointnet+_curvature
+python train_classification.py     --model pointnet2_cls_ssg     --aug_ops ""      --extra_features "density"     --log_dir pointnet+_density'
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "jitter_sigma_clip" --use_normals --log_dir pointnet++_jitter_normals
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "jitter_sigma_clip,dropout"  --extra_features "height"  --log_dir pointnet++_dropout__jitter_height
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "jitter_sigma_clip,dropout"  --extra_features "height" --use_normals --log_dir pointnet++_dropout__jitter_height_normals
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "jitter_sigma_clip,dropout"  --extra_features "height"  --log_dir pointnet++_dropout__jitter_radius
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "jitter_sigma_clip,dropout"  --extra_features "height, radius" --use_normals --log_dir pointnet++_dropout__jitter_height_radius_normals
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "jitter_sigma_clip,dropout"  --extra_features "density" --use_normals --log_dir pointnet++_dropout_jitter_density_normals
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "jitter_sigma_clip,dropout"  --extra_features "pca" --use_normals --log_dir pointnet++_dropout_jitter_height_pca_normals
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "jitter_sigma_clip,dropout"  --extra_features "pca,density" --use_normals --log_dir pointnet++_dropout_jitter_height_pca_density_normals
+python train_classification.py --model pointnet2_cls_ssg --aug_ops "jitter_sigma_clip,dropout"  --extra_features "" --use_normals --optimizer AdamW --log_dir pointnet++_dropout_jitter_normals_opti

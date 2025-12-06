@@ -1,8 +1,3 @@
-"""
-Author: Benny
-Date: Nov 2019
-"""
-
 import os
 import sys
 import torch
@@ -31,7 +26,7 @@ def parse_args():
     parser.add_argument('--batch_size', type=int, default=24, help='batch size in training')
     parser.add_argument('--model', default='pointnet_cls', help='model name [default: pointnet_cls]')
     parser.add_argument('--num_category', default=40, type=int, choices=[10, 40],  help='training on ModelNet10/40')
-    parser.add_argument('--epoch', default=200, type=int, help='number of epoch in training')
+    parser.add_argument('--epoch', default=50, type=int, help='number of epoch in training')
     parser.add_argument('--learning_rate', default=0.001, type=float, help='learning rate in training')
     parser.add_argument('--num_point', type=int, default=1024, help='Point Number')
     parser.add_argument('--optimizer', type=str, default='Adam', help='optimizer for training')
@@ -40,6 +35,14 @@ def parse_args():
     parser.add_argument('--use_normals', action='store_true', default=False, help='use normals')
     parser.add_argument('--process_data', action='store_true', default=False, help='save data offline')
     parser.add_argument('--use_uniform_sample', action='store_true', default=False, help='use uniform sampiling')
+    parser.add_argument('--aug_ops', type=str,
+                    default='',
+                    help='Comma-separated list of data augmentations: '
+                         'dropout, scale, shift, rot_z, rot_3d, rot_rand, jitter, jitter_sigma_clip, flip')
+    parser.add_argument('--extra_features', type=str,
+                    default='',
+                    help='Comma-separated list of extra per-point features: '
+                         'radius, height, pca, curvature, density')
     return parser.parse_args()
 
 
@@ -113,6 +116,12 @@ def main(args):
     logger.addHandler(file_handler)
     log_string('PARAMETER ...')
     log_string(args)
+    # ---- DEBUG: Print augmentation ops ----
+    if hasattr(args, 'aug_ops'):
+        active_aug = [s.strip() for s in args.aug_ops.split(',') if s.strip()]
+        log_string(f"Active Data Augmentation: {active_aug if active_aug else 'None'}")
+    else:
+        log_string("Active Data Augmentation: None")
 
     '''DATA LOADING'''
     log_string('Load dataset ...')
@@ -120,8 +129,33 @@ def main(args):
 
     train_dataset = ModelNetDataLoader(root=data_path, args=args, split='train', process_data=args.process_data)
     test_dataset = ModelNetDataLoader(root=data_path, args=args, split='test', process_data=args.process_data)
-    trainDataLoader = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=10, drop_last=True)
-    testDataLoader = torch.utils.data.DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers=10)
+    trainDataLoader = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=4, drop_last=True)
+    testDataLoader = torch.utils.data.DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers=4)
+    '''Extra Feature'''
+    def count_extra_channel(args):
+        if not hasattr(args, 'extra_features') or not args.extra_features:
+            return 0
+        feats = set([s.strip() for s in args.extra_features.split(',') if s.strip()])
+        dim = 0
+        if 'radius' in feats:
+            dim += 1
+        if 'height' in feats:
+            dim += 1
+        if 'pca' in feats:
+            dim += 3
+        if 'curvature' in feats:
+            dim += 1
+        if 'density' in feats:
+            dim += 1
+        return dim
+
+    extra_channel = count_extra_channel(args)
+    # ---- DEBUG: Print extra feature engineering ----
+    if hasattr(args, 'extra_features') and args.extra_features.strip():
+        features = [s.strip() for s in args.extra_features.split(',') if s.strip()]
+        log_string(f"Extra Features Enabled: {features}, Total Extra Channels = {extra_channel}")
+    else:
+        log_string("Extra Features Enabled: None")
 
     '''MODEL LOADING'''
     num_class = args.num_category
@@ -130,7 +164,7 @@ def main(args):
     shutil.copy('models/pointnet2_utils.py', str(exp_dir))
     shutil.copy('./train_classification.py', str(exp_dir))
 
-    classifier = model.get_model(num_class, normal_channel=args.use_normals)
+    classifier = model.get_model(num_class, normal_channel=args.use_normals, extra_channel=extra_channel)
     criterion = model.get_loss()
     classifier.apply(inplace_relu)
 
@@ -139,7 +173,7 @@ def main(args):
         criterion = criterion.cuda()
 
     try:
-        checkpoint = torch.load(str(exp_dir) + '/checkpoints/best_model.pth')  ### We change our best model path here
+        checkpoint = torch.load(str(exp_dir) + '/checkpoints/best_model.pth', weights_only=False)
         start_epoch = checkpoint['epoch']
         classifier.load_state_dict(checkpoint['model_state_dict'])
         log_string('Use pretrain model')
@@ -174,14 +208,90 @@ def main(args):
         scheduler.step()
         for batch_id, (points, target) in tqdm(enumerate(trainDataLoader, 0), total=len(trainDataLoader), smoothing=0.9):
             optimizer.zero_grad()
-
+            aug_ops = set(args.aug_ops.split(',')) if hasattr(args, 'aug_ops') else set()
             points = points.data.numpy()
-            points = provider.random_point_dropout(points)
-            points[:, :, 0:3] = provider.random_scale_point_cloud(points[:, :, 0:3])
-            points[:, :, 0:3] = provider.shift_point_cloud(points[:, :, 0:3])
+            # points = provider.random_point_dropout(points)
+            # points[:, :, 0:3] = provider.random_scale_point_cloud(points[:, :, 0:3])
+            # points[:, :, 0:3] = provider.shift_point_cloud(points[:, :, 0:3])
+            # ========================================================================================================================================================================
+            '''
+            if epoch == start_epoch and batch_id == 0:
+                print("\n====== DEBUG: INPUT FEATURES ======")
+                print("Raw point tensor shape (before transpose):", points.shape)  # [B, N, C]
+                C = points.shape[2]
+
+                if args.use_normals:
+                    print("Normals enabled: YES (channels 3–5)")
+                else:
+                    print("Normals enabled: NO")
+
+                print(f"Extra feature channels requested: {args.extra_features}")
+                print(f"Total extra feature dims: {extra_channel}")
+
+                # Preview one point from batch 0
+                print("Example point[0,0]:", points[0,0,:])
+                print("===================================\n")
+            # ========================================================================================================================================================================
+            '''
+            # 1) rotations
+            if 'rot_z' in aug_ops:
+                points[:, :, 0:3] = provider.rotate_point_cloud_z(points[:, :, 0:3])
+
+            if 'rot_3d' in aug_ops:
+                points[:, :, 0:3] = provider.rotate_point_cloud_3d(points[:, :, 0:3])
+                
+            if 'rot_rand' in aug_ops:
+                # Random rotation (Generally along arbitrary axis)
+                points[:, :, :3] = provider.rotate_point_cloud(points[:, :, :3])
+
+            # 2) jitter / noise
+            if 'jitter_sigma_clip' in aug_ops:
+                points[:, :, 0:3] = provider.jitter_point_cloud(points[:, :, 0:3], sigma=0.01, clip=0.05)
+
+            if 'jitter' in aug_ops:
+                points[:, :, 0:3] = provider.jitter_point_cloud(points[:, :, 0:3])
+
+            # 3) flips (mirror)
+            if 'flip' in aug_ops:
+                points[:, :, 0:3] = provider.random_flip_point_cloud(points[:, :, 0:3])
+
+            # 4) dropout (point dropping)
+            if 'dropout' in aug_ops:
+                points = provider.random_point_dropout(points)
+
+            # 5) global scale & shift
+            if 'scale' in aug_ops:
+                points[:, :, 0:3] = provider.random_scale_point_cloud(points[:, :, 0:3])
+
+            if 'shift' in aug_ops:
+                points[:, :, 0:3] = provider.shift_point_cloud(points[:, :, 0:3])
+            '''
+            # ========================================================================================================================================================================
+            if epoch == start_epoch and batch_id == 0:
+                print("\n====== DEBUG: AFTER DATA AUGMENTATION ======")
+                print("AUG OPS:", aug_ops)
+                print("XYZ after augmentation (first point):", points[0, 0, :3])
+                print("Extra features unaffected:", points[0, 0, 6:] if C > 6 else "None")
+                print("============================================\n")
+            # ========================================================================================================================================================================
+            '''
             points = torch.Tensor(points)
             points = points.transpose(2, 1)
-
+            '''
+            # ========================================================================================================================================================================
+            if epoch == start_epoch and batch_id == 0:
+                print("\n====== DEBUG: MODEL INPUT ======")
+                print("Model input shape:", points.shape)  # [B, C, N]
+                print("C =", points.shape[1], "channels")
+                print("XYZ sample:", points[0, :3, 0])
+                if args.use_normals:
+                    print("Normals sample:", points[0, 3:6, 0])
+                if extra_channel > 0:
+                    start = 3 + (3 if args.use_normals else 0)
+                    print("Extra feature sample:", points[0, start:, 0])
+                print("=================================\n")
+            # ========================================================================================================================================================================
+            '''
             if not args.use_cpu:
                 points, target = points.cuda(), target.cuda()
 
