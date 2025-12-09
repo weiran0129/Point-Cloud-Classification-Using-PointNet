@@ -15,9 +15,9 @@ Compare the performance of PointNet &amp; PointNet++, explore their ability to g
 [Pytorch Version](https://github.com/yanx27/Pointnet_Pointnet2_pytorch.git)
 
 ## Visualization
-We support a built-in point cloud visualizer for inspecting the resampled ModelNet40 `.txt` point cloud files. 
+We support a built-in point cloud visualizer for inspecting the resampled **ModelNet40** `.txt` point cloud files. 
 ```bash
 pip install open3d numpy
 python data_visualizer.py
 ```
-Hi
+![Example Visualization](visualizer/pic3.png)
