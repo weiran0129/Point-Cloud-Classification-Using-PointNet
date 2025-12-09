@@ -1,9 +1,9 @@
 # Point-Cloud-Classification-Using-PointNet
 ## PointNet & PointNet++ Classification
 PointNet and PointNet++ are foundational neural architectures designed to learn directly from unordered 3D point clouds. While PointNet captures global structural patterns, PointNet++ extends this capability by modeling hierarchical local geometry. In this project, we aim to improve classification accuracy on the ModelNet40 dataset by enhancing the original architectures through three key dimensions:
-* **Data Augmentation:** `Dropout, Rotation, Scaling, Translation, Flipping`
-* **Feature Engineering:**
-* **Training Optimization:**
+* **Data Augmentation:** `Dropout`, `Rotation`, `Scaling`, `Translation`, `Flipping`
+* **Feature Engineering:** `Normals`, `Height`, `Radius`, `Curvature`, `Density`, `PCA`
+* **Training Optimization:** `Cosine Aneealing`, `AdamW with Weight Decay`, `Label Smoothing`
 
 ## Environment Setup
 ## Data Preparation (Resampled ModelNet40)
