@@ -60,6 +60,9 @@ python train_classification.py \
     --log_dir PointNet++
 ```
 ## Performance
+Best PointNet model: `Dropout+Jitter+Normals+Height+Radius` | InstAcc 0.917 (+3.8%) | ClassAcc 0.884 (+5.7 %)
+Best PointNet++ model: `Dropout+Scale+Jitter+Normals with Optimization` | InstAcc 0.935 (+2.1%) | ClassAcc 0.911 (+2.8 %)
+Explore you own combination.
 ## Visualization
 We support a built-in point cloud visualizer for inspecting the resampled **ModelNet40** `.txt` point cloud files. 
 ```bash
