@@ -25,15 +25,13 @@ This project uses the ModelNet40 Normal Resampled dataset (`.txt` format), a sta
 * Uniform 1,024 points per shape with train/test spilt.
 * Normalized coordinates.
 * Per-point surface normals.
-  
-[Resampled ModelNet40 Dataset (.txt file)](https://www.kaggle.com/datasets/chenxaoyu/modelnet-normal-resampled/data)
-
-[Original ModelNet40 Dataset (.off file)](https://www.kaggle.com/datasets/balraj98/modelnet40-princeton-3d-object-dataset/code)
 
 Download to `data/` by runing
 ```batch
 python download_dataset.py
 ```
+[Resampled ModelNet40 Dataset (.txt file)](https://www.kaggle.com/datasets/chenxaoyu/modelnet-normal-resampled/data)
+[Original ModelNet40 Dataset (.off file)](https://www.kaggle.com/datasets/balraj98/modelnet40-princeton-3d-object-dataset/code)
 ## Run
 ## Performance
 ## Visualization
