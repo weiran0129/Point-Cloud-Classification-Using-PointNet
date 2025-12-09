@@ -6,6 +6,11 @@ PointNet and PointNet++ are foundational neural architectures designed to learn 
 * **Training Optimization:** `Cosine Aneealing`, `AdamW with Weight Decay`, `Label Smoothing`
 
 ## Environment Setup
+This project was developed and tested on `Win10`, `PyTorch 2.5.1`, `CUDA 12.1`, `Python 3.9`.
+```batch
+conda install pytorch==2.5.1 torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
+```
+
 ## Data Preparation (Resampled ModelNet40)
 [Resampled ModelNet40 Dataset (.txt file)](https://www.kaggle.com/datasets/chenxaoyu/modelnet-normal-resampled/data)
 
