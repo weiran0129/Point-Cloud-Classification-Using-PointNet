@@ -6,16 +6,34 @@ PointNet and PointNet++ are foundational neural architectures designed to learn 
 * **Training Optimization:** `Cosine Aneealing`, `AdamW with Weight Decay`, `Label Smoothing`
 
 ## Environment Setup
-This project was developed and tested on `Win10`, `PyTorch 2.5.1`, `CUDA 12.1`, `Python 3.9`.
+Clone the Repo
 ```batch
-conda install pytorch==2.5.1 torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
+git clone https://github.com/<your-username>/Point-Cloud-Classification-Using-PointNet.git
+cd Point-Cloud-Classification-Using-PointNet
 ```
 
+This project was developed and tested on `Win10`, `PyTorch 2.5.1`, `CUDA 12.1`, `Python 3.9`.
+```batch
+conda create -n PointCloudClassification python=3.9
+conda activate PointCloudClassification
+conda install pytorch==2.5.1 torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
+```
+Install required python packages.
+
 ## Data Preparation (Resampled ModelNet40)
+This project uses the ModelNet40 Normal Resampled dataset (`.txt` format), a standardized, preprocessed version of the original ModelNet40.
+* Uniform 1,024 points per shape with train/test spilt.
+* Normalized coordinates.
+* Per-point surface normals.
+  
 [Resampled ModelNet40 Dataset (.txt file)](https://www.kaggle.com/datasets/chenxaoyu/modelnet-normal-resampled/data)
 
 [Original ModelNet40 Dataset (.off file)](https://www.kaggle.com/datasets/balraj98/modelnet40-princeton-3d-object-dataset/code)
 
+Download to `data/` by runing
+```batch
+python download_dataset.py
+```
 ## Run
 ## Performance
 ## Visualization
