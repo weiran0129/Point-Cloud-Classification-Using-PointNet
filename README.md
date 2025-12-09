@@ -8,7 +8,7 @@ PointNet and PointNet++ are foundational neural architectures designed to learn 
 ## Environment Setup
 Clone the Repo
 ```batch
-git clone https://github.com/<your-username>/Point-Cloud-Classification-Using-PointNet.git
+git clone https://github.com/weiran0129/Point-Cloud-Classification-Using-PointNet.git
 cd Point-Cloud-Classification-Using-PointNet
 ```
 
