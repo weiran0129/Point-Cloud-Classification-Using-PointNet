@@ -45,7 +45,7 @@ Below are some general arguments use to train the model.
 | `--optimizer`   | Adam    | Optimizer: `Adam`, `AdamW`, or `SGD` |
 | `--log_dir`     | None    | Directory to save logs/checkpoints   |
 
-Example
+Example Training
 ```batch
 ## Baseline PointNet
 python train_classification.py --log_dir PointNet
