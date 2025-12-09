@@ -1,9 +1,10 @@
 # Point-Cloud-Classification-Using-PointNet
 ## PointNet & PointNet++ Classification
 Compare the performance of PointNet &amp; PointNet++, explore their ability to generalize across different object categories, and investigate techniques to enhance classification accuracy
-
 [Project Documents](https://drive.google.com/drive/folders/1otoBE9k_qX8wY8uKDhhJox0m2BNE7LU9?usp=drive_link)
-
+### Data Augmentation
+### Feature Engineering
+### Training Optimization
 
 ## Environment Setup
 ## Data Preparation (Resampled ModelNet40)
