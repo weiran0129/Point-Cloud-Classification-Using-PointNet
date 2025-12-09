@@ -28,6 +28,7 @@ This project uses the ModelNet40 Normal Resampled dataset (`.txt` format), a sta
 
 Download to `data/` by runing
 ```batch
+pip install kagglehub
 python download_dataset.py
 ```
 [Resampled ModelNet40 Dataset (.txt file)](https://www.kaggle.com/datasets/chenxaoyu/modelnet-normal-resampled/data) | [Original ModelNet40 Dataset (.off file)](https://www.kaggle.com/datasets/balraj98/modelnet40-princeton-3d-object-dataset/code)
