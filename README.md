@@ -1,10 +1,9 @@
 # Point-Cloud-Classification-Using-PointNet
 ## PointNet & PointNet++ Classification
-Compare the performance of PointNet &amp; PointNet++, explore their ability to generalize across different object categories, and investigate techniques to enhance classification accuracy
-[Project Documents](https://drive.google.com/drive/folders/1otoBE9k_qX8wY8uKDhhJox0m2BNE7LU9?usp=drive_link)
-### Data Augmentation
-### Feature Engineering
-### Training Optimization
+PointNet and PointNet++ are foundational neural architectures designed to learn directly from unordered 3D point clouds. While PointNet captures global structural patterns, PointNet++ extends this capability by modeling hierarchical local geometry. In this project, we aim to improve classification accuracy on the ModelNet40 dataset by enhancing the original architectures through three key dimensions:
+* **Data Augmentation**
+* **Feature Engineering**
+* **Training Optimization**
 
 ## Environment Setup
 ## Data Preparation (Resampled ModelNet40)
@@ -30,3 +29,5 @@ python data_visualizer.py
 [PointNet2](https://github.com/charlesq34/pointnet2.git)
 
 [Pytorch Version](https://github.com/yanx27/Pointnet_Pointnet2_pytorch.git)
+
+[Project Documents](https://drive.google.com/drive/folders/1otoBE9k_qX8wY8uKDhhJox0m2BNE7LU9?usp=drive_link)
