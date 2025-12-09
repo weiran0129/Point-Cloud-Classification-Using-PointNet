@@ -39,8 +39,8 @@ python download_dataset.py
 | `--epoch`       | 75      | Number of training epochs            |
 | `--learning_rate` | 0.001 | Initial learning rate                |
 | `--use_normals` | False | Include surface normals in input |
-| `--aug_ops` | None | Data Augmentation methods use |
-| `--extra_features` | None | Feature Engineering to include |
+| `--aug_ops` | None | Data Augmentation methods: `dropout`, `jitter`, `scale`, etc. |
+| `--extra_features` | None | Feature Engineering: `height`, `radius`, `curvature`, etc. |
 | `--optimizer`   | Adam    | Optimizer: `Adam`, `AdamW`, or `SGD` |
 | `--log_dir`     | None    | Directory to save logs/checkpoints   |
 ## Performance
