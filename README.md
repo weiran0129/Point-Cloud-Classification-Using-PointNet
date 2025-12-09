@@ -47,10 +47,10 @@ Below are some general arguments use to train the model.
 
 Example
 ```batch
-# Baseline PointNet
+## Baseline PointNet
 python train_classification.py --log_dir PointNet
 
-# PointNet++ with augmentation, feature engineering, and optimization
+## PointNet++ with augmentation, feature engineering, and optimization
 python train_classification.py \
     --model pointnet2_cls_ssg \
     --aug_ops "dropout,jitter_sigma_clip,scale" \
