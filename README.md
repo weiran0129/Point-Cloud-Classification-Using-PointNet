@@ -32,6 +32,7 @@ python download_dataset.py
 ```
 [Resampled ModelNet40 Dataset (.txt file)](https://www.kaggle.com/datasets/chenxaoyu/modelnet-normal-resampled/data) | [Original ModelNet40 Dataset (.off file)](https://www.kaggle.com/datasets/balraj98/modelnet40-princeton-3d-object-dataset/code)
 ## Run
+Below are some general arguments use to train the model.
 | Argument        | Default | Description                          |
 |-----------------|---------|--------------------------------------|
 | `--model` | pointnet_cls | Model to load (`pointnet_cls`, `pointnet2_cls_ssg`, etc.) |
@@ -43,6 +44,21 @@ python download_dataset.py
 | `--extra_features` | None | Feature Engineering: `height`, `radius`, `curvature`, etc. |
 | `--optimizer`   | Adam    | Optimizer: `Adam`, `AdamW`, or `SGD` |
 | `--log_dir`     | None    | Directory to save logs/checkpoints   |
+
+Example
+```batch
+# Baseline PointNet
+python train_classification.py --log_dir PointNet
+
+# PointNet++ with augmentation, feature engineering, and optimization
+python train_classification.py \
+    --model pointnet2_cls_ssg \
+    --aug_ops "dropout,jitter_sigma_clip,scale" \
+    --extra_features "height,radius,density" \
+    --use_normals \
+    -- optimizer AdamW \
+    --log_dir PointNet++
+```
 ## Performance
 ## Visualization
 We support a built-in point cloud visualizer for inspecting the resampled **ModelNet40** `.txt` point cloud files. 
