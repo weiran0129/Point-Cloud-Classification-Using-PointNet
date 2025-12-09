@@ -73,23 +73,7 @@ class get_model(nn.Module):
             feature_list.append(xyz[:, start:, :])
     
         points = torch.cat(feature_list, dim=1) if feature_list else None
-        '''
-        # ========================================================================================================================================================================
-        if B == 1:  # or add custom debug flag
-            print("\n====== DEBUG MODEL FORWARD ======")
-            print("Input xyz shape:", xyz.shape)
-            print("xyz_only shape:", xyz_only.shape)
-
-            if self.normal_channel:
-                print("Normal channels shape:", xyz[:, 3:6, :].shape)
-
-            if self.extra_channel > 0:
-                print("Extra feature channels shape:", xyz[:, start:, :].shape)
-
-            print("Points passed to SA1:", None if points is None else points.shape)
-            print("=================================\n")
-        # ========================================================================================================================================================================
-        '''
+    
         # --- SA layers ---
         l1_xyz, l1_points = self.sa1(xyz_only, points)
         l2_xyz, l2_points = self.sa2(l1_xyz, l1_points)
@@ -99,8 +83,8 @@ class get_model(nn.Module):
         x = self.drop1(F.relu(self.bn1(self.fc1(x))))
         x = self.drop2(F.relu(self.bn2(self.fc2(x))))
         x = self.fc3(x)
-        #x = F.log_softmax(x, -1)
-        #x = F.log_softmax(x, -1)
+        x = F.log_softmax(x, -1)
+    
         return x, l3_points
 
 

@@ -1,7 +1,6 @@
 import os
 import sys
 import torch
-import torch.nn as nn
 import numpy as np
 
 import datetime
@@ -19,20 +18,6 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = BASE_DIR
 sys.path.append(os.path.join(ROOT_DIR, 'models'))
 
-class LabelSmoothingCrossEntropy(nn.Module):
-    def __init__(self, smoothing=0.2):
-        super().__init__()
-        self.smoothing = smoothing
-
-    def forward(self, pred, target):
-        num_classes = pred.size(1)
-        log_probs = torch.log_softmax(pred, dim=1)
-        with torch.no_grad():
-            true_dist = torch.zeros_like(log_probs)
-            true_dist.fill_(self.smoothing / (num_classes - 1))
-            true_dist.scatter_(1, target.unsqueeze(1), 1 - self.smoothing)
-        return torch.mean(torch.sum(-true_dist * log_probs, dim=1))
-    
 def parse_args():
     '''PARAMETERS'''
     parser = argparse.ArgumentParser('training')
@@ -41,7 +26,7 @@ def parse_args():
     parser.add_argument('--batch_size', type=int, default=24, help='batch size in training')
     parser.add_argument('--model', default='pointnet_cls', help='model name [default: pointnet_cls]')
     parser.add_argument('--num_category', default=40, type=int, choices=[10, 40],  help='training on ModelNet10/40')
-    parser.add_argument('--epoch', default=75, type=int, help='number of epoch in training') # 150
+    parser.add_argument('--epoch', default=50, type=int, help='number of epoch in training')
     parser.add_argument('--learning_rate', default=0.001, type=float, help='learning rate in training')
     parser.add_argument('--num_point', type=int, default=1024, help='Point Number')
     parser.add_argument('--optimizer', type=str, default='Adam', help='optimizer for training')
@@ -180,8 +165,7 @@ def main(args):
     shutil.copy('./train_classification.py', str(exp_dir))
 
     classifier = model.get_model(num_class, normal_channel=args.use_normals, extra_channel=extra_channel)
-    #criterion = model.get_loss()
-    criterion = LabelSmoothingCrossEntropy(smoothing=0.2).cuda()
+    criterion = model.get_loss()
     classifier.apply(inplace_relu)
 
     if not args.use_cpu:
@@ -205,40 +189,10 @@ def main(args):
             eps=1e-08,
             weight_decay=args.decay_rate
         )
-    elif args.optimizer == 'AdamW':
-        print("Using AdamW optimizer")
-        optimizer = torch.optim.AdamW(
-            classifier.parameters(),
-            lr=args.learning_rate,
-            betas=(0.9, 0.999),
-            weight_decay=0.05    
-        )
-        '''
-        AdamW optimizer
-        optimizer = torch.optim.AdamW(
-            classifier.parameters(),
-            lr=args.learning_rate,
-            betas=(0.9, 0.999),
-            weight_decay=0.05    
-        )
-        '''
     else:
         optimizer = torch.optim.SGD(classifier.parameters(), lr=0.01, momentum=0.9)
 
-    #scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=20, gamma=0.7)
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
-        optimizer,
-        T_max=args.epoch,
-        eta_min=1e-5    # small minimum LR helps PointNet
-    )
-    '''
-    #Alternative LR scheduler: Cosine Annealing
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
-        optimizer,
-        T_max=args.epoch,
-        eta_min=1e-5    # small minimum LR helps PointNet
-    )
-    '''
+    scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=20, gamma=0.7)
     global_epoch = 0
     global_step = 0
     best_instance_acc = 0.0
@@ -341,10 +295,8 @@ def main(args):
             if not args.use_cpu:
                 points, target = points.cuda(), target.cuda()
 
-            #pred, trans_feat = classifier(points)
-            #loss = criterion(pred, target.long(), trans_feat)
-            pred, _ = classifier(points)
-            loss = criterion(pred, target.long())
+            pred, trans_feat = classifier(points)
+            loss = criterion(pred, target.long(), trans_feat)
             pred_choice = pred.data.max(1)[1]
 
             correct = pred_choice.eq(target.long().data).cpu().sum()
