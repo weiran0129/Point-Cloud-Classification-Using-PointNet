@@ -32,6 +32,16 @@ python download_dataset.py
 ```
 [Resampled ModelNet40 Dataset (.txt file)](https://www.kaggle.com/datasets/chenxaoyu/modelnet-normal-resampled/data) | [Original ModelNet40 Dataset (.off file)](https://www.kaggle.com/datasets/balraj98/modelnet40-princeton-3d-object-dataset/code)
 ## Run
+| Argument        | Type  | Default | Description                          |
+|-----------------|-------|---------|--------------------------------------|
+| `--use_cpu`     | flag  | False   | Force CPU mode                       |
+| `--gpu`         | str   | "0"     | GPU device ID                        |
+| `--batch_size`  | int   | 24      | Batch size                           |
+| `--epoch`       | int   | 75      | Number of training epochs            |
+| `--learning_rate` | float | 0.001 | Initial learning rate                |
+| `--optimizer`   | str   | Adam    | Optimizer: `Adam`, `AdamW`, or `SGD` |
+| `--decay_rate`  | float | 1e-4    | Weight decay (Adam)                  |
+| `--log_dir`     | str   | None    | Directory to save logs/checkpoints   |
 ## Performance
 ## Visualization
 We support a built-in point cloud visualizer for inspecting the resampled **ModelNet40** `.txt` point cloud files. 
