@@ -21,5 +21,5 @@ pip install open3d numpy
 python data_visualizer.py
 ```
 <p align="center">
-  <img src="visualizer/pic3.PNG" width="600">
+  <img src="visualizer/pic3.PNG" width="800">
 </p>
