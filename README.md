@@ -62,9 +62,9 @@ python train_classification.py \
 ## Performance
 Compare to baseline (No data augmentation, feature engineering, optimization), we have
 
-* Best PointNet model: `Dropout+Jitter+Normals+Height+Radius` | InstAcc `0.917 (+3.8%)` | ClassAcc `0.884 (+5.7 %)`
+* Best PointNet model: `Dropout+Jitter+Normals+Height+Radius` | `InstAcc` **0.917 (+3.8%)** | `ClassAcc` **0.884 (+5.7 %)**
 
-* Best PointNet++ model: `Dropout+Scale+Jitter+Normals with Optimization` | InstAcc `0.935 (+2.1%)` | ClassAcc `0.911 (+2.8 %)`
+* Best PointNet++ model: `Dropout+Scale+Jitter+Normals with Optimization` | `InstAcc` **0.935 (+2.1%)** | `ClassAcc` **0.911 (+2.8 %)**
 
 Explore you own combination.
 ## Visualization
