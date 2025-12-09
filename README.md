@@ -20,4 +20,4 @@ We support a built-in point cloud visualizer for inspecting the resampled **Mode
 pip install open3d numpy
 python data_visualizer.py
 ```
-![Example Visualization](visualizer/pic3.png)
+![Example Visualization](visualizer/pic3.PNG)
