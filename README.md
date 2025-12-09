@@ -4,6 +4,7 @@ PointNet and PointNet++ are foundational neural architectures designed to learn 
 * **Data Augmentation:** `Dropout`, `Rotation`, `Scaling`, `Translation`, `Flipping`
 * **Feature Engineering:** `Normals`, `Height`, `Radius`, `Curvature`, `Density`, `PCA`
 * **Training Optimization:** `Cosine Aneealing`, `AdamW with Weight Decay`, `Label Smoothing`
+  
 [Project Documents](https://drive.google.com/drive/folders/1otoBE9k_qX8wY8uKDhhJox0m2BNE7LU9?usp=drive_link)
 
 ## Environment Setup
