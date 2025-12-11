@@ -33,10 +33,15 @@ python download_dataset.py
 ```
 [Resampled ModelNet40 Dataset (.txt file)](https://www.kaggle.com/datasets/chenxaoyu/modelnet-normal-resampled/data) | [Original ModelNet40 Dataset (.off file)](https://www.kaggle.com/datasets/balraj98/modelnet40-princeton-3d-object-dataset/code)
 ## Run
+This project applies both online and offline data augmentation to improve generalization on ModelNet10/40.
+* **On-fly Data Augmentation:** Applied dynamically during each forward pass. The batch of point-cloud data is transformed in memory without increasing the number of samples in the dataset. Aim for efficiency. (Enabled using `train_classification.py`)
+* **Off-line Data Augmentation:** Creates an augmented copy of the dataset on disk. By default, 50% of the training samples are duplicated and augmented, this increases both dataset diversity and dataset size. (Enabled using `train_offline.py`)
+  
 Below are some general arguments use to train the model.
 | Argument        | Default | Description                          |
 |-----------------|---------|--------------------------------------|
 | `--model` | pointnet_cls | Model to load (`pointnet_cls`, `pointnet2_cls_ssg`, etc.) |
+| `--num_category` | 40 | Switch between ModelNet40 and ModelNet10 |
 | `--batch_size`  | 24      | Batch size                           |
 | `--epoch`       | 75      | Number of training epochs            |
 | `--learning_rate` | 0.001 | Initial learning rate                |
