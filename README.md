@@ -36,7 +36,7 @@ python download_dataset.py
 This project applies both online and offline data augmentation to improve generalization on ModelNet10/40.
 * **On-fly Data Augmentation:** Applied dynamically during each forward pass. The batch of point-cloud data is transformed in memory without increasing the number of samples in the dataset. Aim for efficiency. (Enabled using `train_classification.py`)
 * **Off-line Data Augmentation:** Creates an augmented copy of the dataset on disk. By default, 50% of the training samples are duplicated and augmented, this increases both dataset diversity and dataset size. (Enabled using `train_offline.py`)
-* * Auto deletion of the created augmented dataset for space saving. Comment out for permantly save.
+  * Auto deletion of the created augmented dataset for space saving. Comment out for permantly save.
 ```bash
 if args.offline_aug:
   aug_dir = os.path.join('data', f"modelnet10_aug_{args.aug_ops.replace(',', '_')}")
