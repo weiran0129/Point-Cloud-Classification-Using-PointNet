@@ -58,6 +58,7 @@ Below are some general arguments use to train the model.
 | `--extra_features` | None | Feature Engineering: `height`, `radius`, `curvature`, etc. |
 | `--optimizer`   | Adam    | Optimizer: `Adam`, `AdamW`, or `SGD` |
 | `--log_dir`     | None    | Directory to save logs/checkpoints   |
+| `--offline_aug` | None | Perform offline augmentation before training |
 
 Example Training
 ```batch
