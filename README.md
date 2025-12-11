@@ -79,10 +79,12 @@ Compare to baseline (No data augmentation, feature engineering, optimization), w
 <p align="center">
   <img src="visualizer/918814ca0cfed284244b8cbb899ef29d.jpg" width="500">
 </p>
+
+* Best PointNet: `Dropout+Jitter+Normals+Height+Radius` | `InstAcc` **0.917 (+3.8%)** | `ClassAcc` **0.884 (+5.7 %)**
+  
 <p align="center">
   <img src="visualizer/a028f134f3378b261892c60927a9b038.jpg" width="500">
 </p>
-* Best PointNet: `Dropout+Jitter+Normals+Height+Radius` | `InstAcc` **0.917 (+3.8%)** | `ClassAcc` **0.884 (+5.7 %)**
 
 * Best PointNet++: `Dropout+Scale+Jitter+Normals with Optimization` | `InstAcc` **0.935 (+2.1%)** | `ClassAcc` **0.911 (+2.8 %)**
 
