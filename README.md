@@ -100,7 +100,8 @@ python data_visualizer.py
 </p>
 
 ## Project Files
-[Report](https://drive.google.com/drive/folders/1otoBE9k_qX8wY8uKDhhJox0m2BNE7LU9?usp=drive_link) | [Presentation Slide](visualizer/Point Cloud Classification Using PointNet and PointNet++ (1).pdf)| [Related Documents](https://drive.google.com/drive/folders/1otoBE9k_qX8wY8uKDhhJox0m2BNE7LU9?usp=drive_link)
+[Report](https://drive.google.com/drive/folders/1otoBE9k_qX8wY8uKDhhJox0m2BNE7LU9?usp=drive_link) | [Presentation Slide](visualizer/Point%20Cloud%20Classification%20Using%20PointNet%20and%20PointNet++%20(1).pdf)
+| [Related Documents](https://drive.google.com/drive/folders/1otoBE9k_qX8wY8uKDhhJox0m2BNE7LU9?usp=drive_link)
 
 ## Referance
 [PointNet](https://github.com/charlesq34/pointnet.git) | [PointNet2](https://github.com/charlesq34/pointnet2.git) | [Pytorch Version](https://github.com/yanx27/Pointnet_Pointnet2_pytorch.git)
