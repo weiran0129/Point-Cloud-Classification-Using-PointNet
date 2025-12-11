@@ -290,3 +290,19 @@ def random_flip_point_cloud(batch_xyz, prob=0.5):
         if np.random.rand() < prob:
             out[i, :, 1] = -out[i, :, 1]  # flip Y
     return out
+
+def flip_point_cloud_with_normal(xyz, normals, prob=0.5):
+    """
+    xyz: [N,3]
+    normals: [N,3]
+    Mirrors X and/or Y and flips normals accordingly.
+    """
+    if np.random.rand() < prob:
+        xyz[:, 0] *= -1
+        normals[:, 0] *= -1
+
+    if np.random.rand() < prob:
+        xyz[:, 1] *= -1
+        normals[:, 1] *= -1
+
+    return xyz, normals
