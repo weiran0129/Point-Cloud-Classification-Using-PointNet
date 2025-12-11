@@ -77,13 +77,13 @@ python train_classification.py \
 ## Performance
 Compare to baseline (No data augmentation, feature engineering, optimization), we have
 <p align="center">
-  <img src="visualizer/918814ca0cfed284244b8cbb899ef29d.jpg" width="500">
+  <img src="Project Documents/918814ca0cfed284244b8cbb899ef29d.jpg" width="500">
 </p>
 
 * Best PointNet: `Dropout+Jitter+Normals+Height+Radius` | `InstAcc` **0.917 (+3.8%)** | `ClassAcc` **0.884 (+5.7 %)**
   
 <p align="center">
-  <img src="visualizer/a028f134f3378b261892c60927a9b038.jpg" width="500">
+  <img src="Project Documents/a028f134f3378b261892c60927a9b038.jpg" width="500">
 </p>
 
 * Best PointNet++: `Dropout+Scale+Jitter+Normals with Optimization` | `InstAcc` **0.935 (+2.1%)** | `ClassAcc` **0.911 (+2.8 %)**
@@ -100,7 +100,7 @@ python data_visualizer.py
 </p>
 
 ## Project Files
-[Report](https://drive.google.com/drive/folders/1otoBE9k_qX8wY8uKDhhJox0m2BNE7LU9?usp=drive_link) | [Presentation Slide](visualizer/Point%20Cloud%20Classification%20Using%20PointNet%20and%20PointNet++%20(1).pdf)
+[Report](https://drive.google.com/drive/folders/1otoBE9k_qX8wY8uKDhhJox0m2BNE7LU9?usp=drive_link) | [Presentation Slide](Project Documents/Point%20Cloud%20Classification%20Using%20PointNet%20and%20PointNet++%20(1).pdf)
 | [Related Documents](https://drive.google.com/drive/folders/1otoBE9k_qX8wY8uKDhhJox0m2BNE7LU9?usp=drive_link)
 
 ## Referance
