@@ -73,6 +73,14 @@ python train_classification.py \
     --use_normals \
     -- optimizer AdamW \
     --log_dir PointNet++
+
+## PointNet offline data augmentation
+python train_offline.py \
+--model pointnet_cls \
+--num_category 10 \
+--offline_aug \
+--aug_ops "scale,dropout,shift,jitter_sigma_clip"
+\--log_dir pN++_offline
 ```
 ## Performance
 Compare to baseline (No data augmentation, feature engineering, optimization), we have
